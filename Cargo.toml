@@ -1,0 +1,10 @@
+[package]
+name = "imgprev"
+version = "0.0.1"
+authors = ["Daniel Herzog <wikiti.doghound@gmail.com>"]
+
+[dependencies]
+image = "*"
+ansi_term = "0.8"
+lazy_static = "0.2.1"
+clap = { version = "2", features = ["yaml"] }
