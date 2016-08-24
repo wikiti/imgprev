@@ -9,6 +9,8 @@
 - Clone this repo into GitLab.
 - Create a tag, and publish a release.
 
+- Posibility to preview image regions (?).
+
 ## Summary
 
 A simple and powerful [Rust](https://www.rust-lang.org) [CLI](https://en.wikipedia.org/wiki/Command-line_interface) application to display images in non visual interfaces (for example, ssh).

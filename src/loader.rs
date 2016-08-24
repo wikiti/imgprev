@@ -49,11 +49,11 @@ impl<'a> ImageLoader<'a> {
 
   fn filter(&self) -> image::imageops::FilterType {
     match self.filter {
-      "linear" => image::imageops::FilterType::Triangle,
-      "cubic" => image::imageops::FilterType::CatmullRom,
+      "linear"   => image::imageops::FilterType::Triangle,
+      "cubic"    => image::imageops::FilterType::CatmullRom,
       "gaussian" => image::imageops::FilterType::Gaussian,
       "lanczos3" => image::imageops::FilterType::Lanczos3,
-      _ => image::imageops::FilterType::Nearest
+      _          => image::imageops::FilterType::Nearest
     }
   }
 
