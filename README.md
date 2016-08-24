@@ -7,6 +7,7 @@
 - Create a cool logo!
 - Complete this README.
 - Clone this repo into GitLab.
+- Create a tag, and publish a release.
 
 ## Summary
 
