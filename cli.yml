@@ -1,7 +1,7 @@
-name: Image Previewer (imgprev)
-version: 1.0.0
-author: Daniel Herzog <info@danielherzog.es>
-about: Use this application to preview image files in a non-GUI enviroment (e.g. ssh).
+name: "Image Previewer (imgprev)"
+version: "1.0.0"
+author: "Daniel Herzog <info@danielherzog.es>"
+about: "Use this application to preview image files in a non-GUI enviroment (e.g. ssh)."
 args:
     - mode:
         short: m
@@ -9,23 +9,23 @@ args:
         value_name: MODE
         help: "Sets a drawing mode."
         takes_value: true
-        default_value: 'ansi'
-        possible_values: ['ansi', 'grayscale', 'true_color', 'text']
-    - columns:
-        short: c
-        long: columns
-        value_name: COLS
-        help: "Set the maximum amount of columns (console width) to fit the image. Don't use big values!"
+        default_value: "ansi"
+        possible_values: ["ansi", "grayscale", "true_color", "text"]
+    - width:
+        short: w
+        long: w
+        value_name: WIDTH
+        help: "Set the maximum width to fit the image. Each image pixel equals to 2 console characters. Don't use big values!"
         takes_value: true
-        default_value: '50'
+        default_value: "50"
     - filter:
         short: f
         long: filter
         value_name: FILTER
         help: "Pixel filter used to resized the image. From lowest to highest quality."
         takes_value: true
-        default_value: 'cubic'
-        possible_values: ['none', 'linear', 'cubic', 'gaussian', 'lanczos3']
+        default_value: "cubic"
+        possible_values: ["none", "linear", "cubic", "gaussian", "lanczos3"]
     - FILE:
         help: "Sets the input image to display. Valid formats are: png, jpeg, gif, bmp, ico. Partially supported: tiff, webp"
         required: true

@@ -21,7 +21,7 @@ fn main() {
   };
 
   let mut l = loader::ImageLoader { filename: matches.value_of("FILE").unwrap(),
-                                    cols:     matches.value_of("columns").unwrap().parse::<u32>().unwrap(),
+                                    cols:     matches.value_of("width").unwrap().parse::<u32>().unwrap(),
                                     filter:   matches.value_of("filter").unwrap(),
                                     ..Default::default() };
   l.load();
