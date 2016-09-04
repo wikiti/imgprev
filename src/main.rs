@@ -10,8 +10,7 @@ use clap::App;
 
 fn main() {
   let yaml = load_yaml!("../cli.yml");
-  let app = App::from_yaml(yaml);
-  let matches = app.get_matches();
+  let matches = App::from_yaml(yaml).get_matches();
 
   let printer = match matches.value_of("mode").unwrap() {
     "ansi"       => modes::ansi::print_pixel,
