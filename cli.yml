@@ -1,5 +1,5 @@
 name: "Image Previewer (imgprev)"
-version: "1.0.0"
+version: "0.0.2"
 author: "Daniel Herzog <info@danielherzog.es>"
 about: "Use this application to preview image files in a non-GUI enviroment (e.g. ssh)."
 args:

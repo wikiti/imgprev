@@ -9,17 +9,26 @@ lazy_static! {
 }
 
 use pixel;
+use modes::base::Base;
 
-fn find_nearest_color(p: &pixel::Pixel) -> usize {
-  let value = p.grayscale();
-  let mut min: i32 = i32::max_value();
-  COLORS.iter().enumerate().map(|(i, c)| (i, (value - c).abs()) )
-        .fold(0, |acc, (i, c)| if c < min { min = c; i as i32 } else { acc });
-
-  let index = (COLORS.len() as f64) * (value as f64) / 256.0;
-  232 + index as usize
+pub struct Grayscale<'a> {
+  pub p: &'a pixel::Pixel
 }
 
-pub fn print_pixel(p: &pixel::Pixel) {
-  print!("\x1b[48;5;{}m  \x1b[0m", find_nearest_color(p));
+impl<'a> Grayscale<'a> {
+  pub fn find_nearest_color(&self) -> usize {
+    let value = self.p.grayscale();
+    let mut min: i32 = i32::max_value();
+    COLORS.iter().enumerate().map(|(i, c)| (i, (value - c).abs()) )
+          .fold(0, |acc, (i, c)| if c < min { min = c; i as i32 } else { acc });
+
+    let index = (COLORS.len() as f64) * (value as f64) / 256.0;
+    232 + index as usize
+  }
+}
+
+impl<'a> Base for Grayscale<'a> {
+  fn print(&self) {
+    print!("\x1b[48;5;{}m  \x1b[0m", self.find_nearest_color());
+  }
 }
