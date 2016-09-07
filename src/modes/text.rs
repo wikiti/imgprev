@@ -12,13 +12,22 @@ lazy_static! {
 }
 
 use pixel;
+use modes::base::Base;
 
-fn find_character(p: &pixel::Pixel) -> &str {
-  let value = p.grayscale();
-  let index = (COLORS.len() as f64) * (value as f64) / 256.0;
-  COLORS[index as usize]
+pub struct Text<'a> {
+  pub p: &'a pixel::Pixel
 }
 
-pub fn print_pixel(p: &pixel::Pixel) {
-  print!("{0}{0}", find_character(p));
+impl<'a> Text<'a> {
+  fn find_character(&self) -> &str {
+    let value = self.p.grayscale();
+    let index = (COLORS.len() as f64) * (value as f64) / 256.0;
+    COLORS[index as usize]
+  }
+}
+
+impl<'a> Base for Text<'a> {
+  fn print(&self) {
+    print!("{0}{0}", self.find_character());
+  }
 }

@@ -1,3 +1,5 @@
+pub mod base;
+
 pub mod text;
 pub mod ansi;
 pub mod grayscale;

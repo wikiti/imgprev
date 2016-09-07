@@ -49,13 +49,22 @@ lazy_static! {
 }
 
 use pixel;
+use modes::base::Base;
 
-fn find_nearest_color(p: &pixel::Pixel) -> i32 {
-  let mut min: i32 = i32::max_value();
-  COLORS.iter().enumerate().map(|(i, c)| (i, p.distance(pixel::build(*c))) )
-        .fold(0, |acc, (i, c)| if c < min { min = c; i as i32 } else { acc })
+pub struct Ansi<'a> {
+  pub p: &'a pixel::Pixel
 }
 
-pub fn print_pixel(p: &pixel::Pixel) {
-  print!("\x1b[48;5;{}m  \x1b[0m", find_nearest_color(p));
+impl<'a> Ansi<'a> {
+  pub fn find_nearest_color(&self) -> i32 {
+    let mut min: i32 = i32::max_value();
+    COLORS.iter().enumerate().map(|(i, c)| (i, self.p.distance(pixel::build(*c))) )
+          .fold(0, |acc, (i, c)| if c < min { min = c; i as i32 } else { acc })
+  }
+}
+
+impl<'a> Base for Ansi<'a> {
+  fn print(&self) {
+    print!("\x1b[48;5;{}m  \x1b[0m", self.find_nearest_color());
+  }
 }

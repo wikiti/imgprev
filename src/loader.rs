@@ -2,9 +2,12 @@ use pixel;
 use std::path::Path;
 use image;
 use image::GenericImage;
+use modes::*;
+use modes::base::Base;
 
 pub struct ImageLoader<'a> {
   pub filename: &'a str,
+  pub mode: &'a str,
   pub pixels: Vec<pixel::Pixel>,
   pub width: u32,
   pub height: u32,
@@ -37,10 +40,11 @@ impl<'a> ImageLoader<'a> {
     }
   }
 
-  pub fn paint<F>(&mut self, f: F) where F: Fn(&pixel::Pixel) {
+
+  pub fn paint(&mut self) {
     for y in 0..self.height {
       for x in 0..self.width {
-        f(self.get_pixel(x, y));
+        self.print_pixel(x, y);
       }
       self.newline();
     }
@@ -64,10 +68,21 @@ impl<'a> ImageLoader<'a> {
   fn newline(&self) {
     print!("\n");
   }
+
+  fn print_pixel(&mut self, x: u32, y: u32) {
+    let p = self.get_pixel(x, y);
+    match self.mode {
+      "ansi"       => ansi::Ansi { p: p }.print(),
+      "grayscale"  => grayscale::Grayscale { p: p }.print(),
+      "true_color" => true_color::TrueColor { p: p }.print(),
+      _            => text::Text { p: p }.print(),
+    };
+  }
 }
 
 impl<'a> Default for ImageLoader<'a> {
   fn default () -> ImageLoader<'a> {
-    ImageLoader { filename: "", pixels: vec![], width: 0, height: 0, cols: 50, filter: "none" }
+    ImageLoader { filename: "", mode: "", pixels: vec![], width: 0, height: 0, cols: 50,
+                  filter: "none" }
   }
 }
