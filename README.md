@@ -6,6 +6,18 @@ A simple and powerful [Rust](https://www.rust-lang.org) [CLI](https://en.wikiped
 
 ## Install
 
+### Linux
+
+Just run this command to install the application:
+
+```sh
+curl -s https://raw.githubusercontent.com/wikiti/imgprev/master/install.sh | sh
+```
+
+and the application will be directly installed into the `/usr/local/bin` folder as `imgprev`.
+
+### Manual
+
 You can download the binary files from the releases section, or build it by yourself with Rust. After that, place the binary file in a directory accessible by *PATH* (e.g. in */usr/bin/*). Otherwise, you may want to put the executable in any folder, and prefix the executable with corresponding directory path (e.g. */home/test/dev/imgprev*).
 
 Please bear in mind that this application must be installed in the target machine if you are ussing ssh.
